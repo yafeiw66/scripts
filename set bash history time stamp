@@ -1,0 +1,7 @@
+#Step-by-step guide
+#To have timestamp in the bas history log please, append the following to the .bash_profile for the root, wasadmin and ivmgr user accounts
+
+echo -e 'export HISTTIMEFORMAT="%d/%m/%y %T "\nexport HISTSIZE=10000'>> ~wasadmin/.bash_profile 
+echo -e 'export HISTTIMEFORMAT="%d/%m/%y %T "\nexport HISTSIZE=10000'>> ~ivmgr/.bash_profile   # Just for WAS/IHS profiles
+echo -e 'export HISTTIMEFORMAT="%d/%m/%y %T "\nexport HISTSIZE=10000'>> /root/.bash_profile
+. /root/.bash_profile
