@@ -1,0 +1,27 @@
+---
+
+- name: install system packages
+  hosts: webservers
+  become: true
+  become_method: sudo
+  become_user: root
+  tasks:
+    - name: update packages
+      yum: name=* state=latest update_cache=yes
+      when: ansible_distribution == "CentOS"
+
+    - name: install new  packages
+      yum: name="{{item}}"  state=installed
+      with_items:
+        - httpd
+        - tree
+        - git
+      notify:
+        - httpd_restart
+      #when: ansible_distribution == "CentOS"
+
+  handlers:
+    - name: httpd_restart
+      service:
+        name: httpd
+        state: started
